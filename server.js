@@ -11,6 +11,7 @@ mongoose.connect("mongodb://localhost/workout", {
     useUnifiedTopology: true,
 });
 
-// const fitnessRoutes
+const clientRoutes = require("./routes/client-routes")
+app.use(clientRoutes)
 
 app.listen(PORT, () => console.log(`Listening at: http://localhost:${PORT}`));
