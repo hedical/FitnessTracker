@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
+// Create the subschema attached to the Workout Schema
 const subSchema = new Schema({
     type: {
         type: String,
@@ -47,4 +48,6 @@ const workoutSchema = new Schema({
 
 const Workout = mongoose.model("Workout", workoutSchema)
 
+
+// export our model
 module.exports = { Workout } 
