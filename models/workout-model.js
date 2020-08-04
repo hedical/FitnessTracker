@@ -4,13 +4,18 @@ const Schema = mongoose.Schema;
 const subSchema = new Schema({
     type: {
         type: String,
+        required: "Must chose a type"
     },
     name: {
         type: String,
+        required: "Must add a name for your exercise"
     },
     duration: {
         type: Number,
+        required: "Must insert a number"
     },
+
+    // Resistance specific
     weight: {
         type: Number,
     },
@@ -19,17 +24,23 @@ const subSchema = new Schema({
     },
     sets: {
         type: Number,
+    },
+
+    // Cardio specific
+    distance: {
+        type: Number,
     }
-})
+}, { _id: false })
 
 
 const workoutSchema = new Schema({
     day: {
         type: Date,
+        default: new Date(),
     },
-    exercices: [subSchema]
+    exercises: [subSchema]
 })
 
-const Workout = mongoose.model('Workout', workoutSchema)
+const Workout = mongoose.model("Workout", workoutSchema)
 
-module.exports = { Workout }
+module.exports = { Workout } 
