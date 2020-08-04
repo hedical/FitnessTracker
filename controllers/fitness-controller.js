@@ -1,17 +1,10 @@
-const db = require("../models/workout-model")
+const db = require("../models/workout-model");
+const workoutModel = require("../models/workout-model");
 
 module.exports = {
     getLastWorkout: async (req, res) => {
         db.Workout.find({})
-            .then((workouts) => res.send(workouts))
-            // .then((workouts) => {
-            //     let totalDuration = 0
-            //     workouts.duration.forEach((exercise) => {
-            //         totalDuration += exercise.duration
-            //     })
-
-            //     res.send(totalDuration)
-            // })
+            .then((workout) => res.send(workout))
             .catch((err) => res.send(err));
     },
 
@@ -27,6 +20,9 @@ module.exports = {
     addExercise: async (req, res) => {
         try {
             const targetWorkout = await db.Workout.findById(req.params.id)
+
+            targetWorkout.totalDuration += req.body.duration
+
             targetWorkout.exercises.push(req.body)
             await targetWorkout.save()
             res.send(targetWorkout)
